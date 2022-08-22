@@ -1,0 +1,39 @@
+body{
+  background-color: rgba(255, 248, 220, 0.5);
+}
+h1{
+  column-span: all;
+}
+nav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-around;
+  font-family: 'Courier New', Courier, monospace;
+}
+a{
+  list-style: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: lightcoral;
+  
+}
+p{
+  color: lightblue;
+  font-size: large;
+  border: 1px solid gray;
+  width: auto;
+  padding: 5px;
+}
+
+img{
+  border-radius: 5%;
+}
+main{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-around;
+}
+
