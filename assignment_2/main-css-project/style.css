@@ -85,6 +85,7 @@ nav .logo{
   height: 40vh;
   padding-top: 5%;
   align-items: center;
+  padding-bottom: 120px;
 }
 .information-container{
   display: flex;
@@ -93,7 +94,7 @@ nav .logo{
   width: 70%;
   padding-top: 60px;
   justify-content: space-between;
-  padding-bottom: 120px;
+  
 }
 .caption{
   text-align: center;
@@ -110,4 +111,79 @@ nav .logo{
   height: 170px;
   border: 5px solid #3882f6;
   border-radius: 10px;
+}
+.quote{
+  display: flex;
+  width: 100vw;
+  height: 40vh;
+  background-color: #e5e7eb;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+}
+blockquote{
+  font-size: 36px;
+  color: #1f2937;
+  font-weight: lighter;
+  width: 50vw;
+  padding: 10px;
+}
+.citation{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+  width: 50vw;
+  font-weight: bold;
+}
+.call-to-action-container{
+  width: 100vw;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #F9FaF8;
+}
+.call-to-action{
+  background-color: #3882f6;
+  padding: 50px 100px;
+  display: flex;
+  flex-direction: row;
+}
+.call-to-action .text-container{
+  width: 70%;
+}
+.call-to-action .text-container h1{
+  font-size: 24px;
+  color: #F9FaF8;
+}
+.call-to-action .text-container p{
+  font-size: 18px;
+  color: #e5e7eb
+}
+.call-to-action .button-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+.call-to-action .button-container button{
+  color: #e5e7eb;
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+  background-color: #3882f6;
+  padding: 6px 20px;
+}
+footer{
+  background-color: #1f2937;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+footer p{
+  color: #e5e7eb;
+  font-size: 18px;
 }
