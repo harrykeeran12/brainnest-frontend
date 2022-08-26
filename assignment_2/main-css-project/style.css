@@ -64,6 +64,10 @@ nav .logo{
   flex-direction: column;
   gap: 10px;
 }
+.text1 p{
+  font-size: 18px;
+  color: #e5e7eb;
+}
 .text1 h1{
   font-size: 48px;
   font-weight: bolder;
@@ -77,6 +81,9 @@ nav .logo{
   border: 0px;
   color:#F9FaF8;
   border-radius: 10px;
+}
+.text1 button:hover{
+  color: #e5e7eb;
 }
 .information{
   display: flex;
@@ -107,8 +114,8 @@ nav .logo{
   width: 170px;
 }
 .square{
-  width: 100%;
-  height: 170px;
+  width: 10.625em;
+  height: 10.625em;
   border: 5px solid #3882f6;
   border-radius: 10px;
 }
@@ -150,6 +157,7 @@ blockquote{
   padding: 50px 100px;
   display: flex;
   flex-direction: row;
+  border-radius: 10px;
 }
 .call-to-action .text-container{
   width: 70%;
@@ -174,6 +182,9 @@ blockquote{
   border-radius: 5px;
   background-color: #3882f6;
   padding: 6px 20px;
+}
+.call-to-action .button-container button:hover{
+  color: #F9FaF8;
 }
 footer{
   background-color: #1f2937;
