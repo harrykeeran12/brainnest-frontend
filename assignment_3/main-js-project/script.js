@@ -58,7 +58,7 @@ function game(){
   if (gameCounter == 0) {
     return 'You drew!'
   } else if(gameCounter < 0){
-    return 'You lost!'
+    return 'Computer wins!'
   }
   else{
     return 'You won!'
