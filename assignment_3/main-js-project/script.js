@@ -1,16 +1,19 @@
+let playerChoice = [0, 0, 0];
 function computerPlay(){
   let choices = ['rock', 'paper', 'scissors']
   let random = Math.floor(Math.random() * 3)
   return choices[random]
 }
-function playerTurn(){
-  let playerChoice = prompt('Choose either rock, paper, or scissors.')
-  switch(playerChoice.toLowerCase()){
-    case('rock'):
+function playerTurn(choice){
+  switch (choice) {
+    case 'rock':
+      playerChoice = [1,0,0]
       return 'rock'
-    case('paper'):
+    case 'paper':
+      playerChoice = [0,1,0]
       return 'paper'
-    case('scissors'):
+    case 'scissors':
+      playerChoice = [0,0,1]
       return 'scissors'
   }
 }
@@ -40,28 +43,50 @@ function round(playerSelection, computerSelection){
 }
 function game(){
   let gameCounter = 0
-  for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
-    let playerGo = playerTurn();
+  let paragraphLog = document.querySelector('.log');
+  let playerPoints = 0;
+  let computerPoints = 0;
+  let playerScore = document.querySelector('.playerScore .number');
+  let computerScore = document.querySelector('.computerScore .number');
+  let question = document.querySelector('.question')
+  question.innerHTML = 'Choose either rock, paper, or scissors.'
+  while(playerPoints < 5 && computerPoints < 5){
+    if (playerChoice[0] == 1) {
+      playerGo = 'rock'
+    } else if (playerChoice[1] == 1) {
+      playerGo = 'paper'
+    } else if (playerChoice[2] == 1) {
+      playerGo = 'scissors'
+    }
+    playerGo = prompt('Choose either rock, paper, or scissors.')
     let computerGo = computerPlay();
     let verdict = round(playerGo, computerGo)
     gameCounter += verdict
     if (verdict == 1) {
-      console.log(`You win! ${playerGo} beats ${computerGo}!`)
-    } else if(verdict == 0) {
-      console.log(`Draw!`)
+      paragraphLog.innerHTML = paragraphLog.innerHTML + `<br>You win! ${playerGo} beats ${computerGo}!`
+      playerPoints += 1;
+      playerScore.innerHTML = playerPoints;
+    } else if (verdict == 0) {
+      paragraphLog.innerHTML = paragraphLog.innerHTML + `<br>Draw!`
+    } else {
+      paragraphLog.innerHTML = paragraphLog.innerHTML + `<br>You lose! ${computerGo} beats ${playerGo}!`
+      computerPoints += 1;
+      computerScore.innerHTML = computerPoints;
+
+
     }
-    else{
-      console.log(`You lose! ${computerGo} beats ${playerGo}!`)
-    }
   }
-  console.log(`The score is ${gameCounter}!`)
-  if (gameCounter == 0) {
-    return 'You drew!'
-  } else if(gameCounter < 0){
-    return 'Computer wins!'
+  
+  if (computerPoints == 5) {
+    computerScore.setAttribute('style', 'color:green')
+    computerScore.setAttribute('style', 'animation: slightUp 1s infinite ease-in-out;')
+    playerScore.setAttribute('style', 'color:red')
+  } else if (playerPoints == 5) {
+    playerScore.setAttribute('style', 'color:green')
+    playerScore.setAttribute('style', 'animation: slightUp 1s infinite ease-in-out;')
+    computerScore.setAttribute('style', 'color:red')
   }
-  else{
-    return 'You won!'
-  }
+  
 }
+
 
