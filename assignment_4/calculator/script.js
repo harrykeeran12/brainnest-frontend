@@ -8,7 +8,7 @@ let clearButton = document.querySelector('.clear');
 let equalsButton = document.querySelector('.equals');
 let backSpaceButton = document.querySelector('.backspace')
 let numberList = document.querySelectorAll('.number');
-
+let wipe = true
 function add(a,b){
   return a + b
 }
@@ -72,15 +72,20 @@ function backSpace(){
 }
 function main(){
   addButton.addEventListener('click', ()=>{
+    wipe = false
     addtoDisplay('+')
+    
   })
   subtractButton.addEventListener('click', () => {
+    wipe = false
     addtoDisplay('-')
   })
   multiplyButton.addEventListener('click', () => {
+    wipe = false
     addtoDisplay('x')
   })
   divideButton.addEventListener('click', () => {
+    wipe = false
     addtoDisplay('/')
   })
   clearButton.addEventListener('click', ()=>{
@@ -91,14 +96,23 @@ function main(){
   })
   numberList.forEach(item => {
     item.addEventListener('click', ()=>{
+      if (wipe){
+        clear()
+        wipe = false
+      }
       addtoDisplay(item.innerHTML)
+      
     })
   });
   equalsButton.addEventListener('click', ()=>{
-    let numbers = display.innerHTML.split(/\D+/gm);
+    let numbers = display.innerHTML.split(/[\+x\/\-]/gm);
+    console.log(numbers)
     let operator = display.innerHTML.match(/\D+/gm)[0];
-    let result = operate(operator, parseInt(numbers[0]), parseInt(numbers[1]))
-    replace(result)
+    if (numbers.length === operator.length * 2){
+      let result = operate(operator, parseInt(numbers[0]), parseInt(numbers[1]))
+      replace(result)
+      wipe = true
+    }
   })
 
 }

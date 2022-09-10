@@ -30,8 +30,9 @@ main{
 }
 .display{
   padding: 0.75rem;
-  text-align: center;
+  text-align: right;
   font-family: monospace;
+  max-width: 30%;
 }
 .buttons{
   display: grid;
