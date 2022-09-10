@@ -9,6 +9,7 @@ let equalsButton = document.querySelector('.equals');
 let backSpaceButton = document.querySelector('.backspace')
 let numberList = document.querySelectorAll('.number');
 let wipe = true
+
 function add(a,b){
   return a + b
 }
