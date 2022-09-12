@@ -1,28 +1,34 @@
 
 let gameStart = false;
 
+let rockButton = document.querySelector('.rock');
+let paperButton = document.querySelector('.paper');
+let scissorsButton = document.querySelector('.scissors');
+
+let paragraphLog = document.querySelector('.log');
+let playerPoints = 0;
+let computerPoints = 0;
+
+const playerScore = document.querySelector('.playerScore .number');
+const computerScore = document.querySelector('.computerScore .number');
+
 function computerPlay(){
   let choices = ['rock', 'paper', 'scissors']
   let random = Math.floor(Math.random() * 3)
   return choices[random]
 }
 function playerTurn(choice){
-  while(true){
-    if (gameStart) {
-      switch (choice) {
-        case 'rock':
-          playerChoice = [1, 0, 0]
-          console.log(`Player chooses ${choice}!`)
-          return 'rock'
-        case 'paper':
-          playerChoice = [0, 1, 0]
-          console.log(`Player chooses ${choice}!`)
-          return 'paper'
-        case 'scissors':
-          playerChoice = [0, 0, 1]
-          console.log(`Player chooses ${choice}!`)
-          return 'scissors'
-      }
+  if (gameStart) {
+    switch (choice) {
+      case 'rock':
+        console.log(`Player chooses ${choice}!`)
+        return 'rock'
+      case 'paper':
+        console.log(`Player chooses ${choice}!`)
+        return 'paper'
+      case 'scissors':
+        console.log(`Player chooses ${choice}!`)
+        return 'scissors'
     }
   }
   
@@ -52,65 +58,60 @@ function round(playerSelection, computerSelection){
     return -1
   }
 }
-function game(){
-  gameStart = true;
+function game(playerGo, computerGo){
 
-  if (!gameStart) {
-    document.querySelector('.start').innerHTML = 'Start Game';
-  } else {
-    document.querySelector('.start').innerHTML = 'Submit answer';
-  }
+  verdict = round(playerGo, computerGo)
 
-  let paragraphLog = document.querySelector('.log');
-  let playerPoints = 0;
-  let computerPoints = 0;
-
-  let playerScore = document.querySelector('.playerScore .number');
-  let computerScore = document.querySelector('.computerScore .number');
-
-  let question = document.querySelector('.question');
-
-  let rockButton = document.querySelector('.rock');
-  let paperButton = document.querySelector('.paper');
-  let scissorsButton = document.querySelector('.scissors');
-
-  question.innerHTML = 'Choose either rock, paper, or scissors.'
-  
-  let playerChoice = [0, 0, 0];
-  rockButton.addEventListener('click', ()=>{
-    playerGo = playerTurn('rock')
-  })
-  paperButton.addEventListener('click', () => {
-    playerGo = playerTurn('paper')
-  })
-  scissorsButton.addEventListener('click', () => {
-    playerGo = playerTurn('scissors')
-  })
-  playerChoice = [0, 0, 0]
-  let computerGo = computerPlay();
-  let verdict = round(playerGo, computerGo)
   if (verdict == 1) {
     paragraphLog.innerHTML = paragraphLog.innerHTML + `<br>You win! ${playerGo} beats ${computerGo}!`
     playerPoints += 1;
     playerScore.innerHTML = playerPoints;
-  } else if (verdict == 0) {
+  } 
+  else if (verdict == 0) {
     paragraphLog.innerHTML = paragraphLog.innerHTML + `<br>Draw!`
-  } else {
+  } 
+  else {
     paragraphLog.innerHTML = paragraphLog.innerHTML + `<br>You lose! ${computerGo} beats ${playerGo}!`
     computerPoints += 1;
     computerScore.innerHTML = computerPoints;
   }
+
   if (computerPoints == 5) {
     computerScore.setAttribute('style', 'color:green')
     computerScore.setAttribute('style', 'animation: slightUp 1s infinite ease-in-out;')
     playerScore.setAttribute('style', 'color:red')
-  } else if (playerPoints == 5) {
+  } 
+  else if (playerPoints == 5) {
     playerScore.setAttribute('style', 'color:green')
     playerScore.setAttribute('style', 'animation: slightUp 1s infinite ease-in-out;')
     computerScore.setAttribute('style', 'color:red')
   }
+
 }
+rockButton.addEventListener('click', function () {
+  playerGo = playerTurn('rock')
+  let computerGo = computerPlay();
   
+  game(playerGo, computerGo)
+})
+paperButton.addEventListener('click', function () {
+  playerGo = playerTurn('paper')
+  let computerGo = computerPlay();
+  game(playerGo, computerGo)
+})
+scissorsButton.addEventListener('click', function () {
+  playerGo = playerTurn('scissors')
+  let computerGo = computerPlay();
+  game(playerGo, computerGo)
+})
+
+function start(){
+  gameStart = true;
+
+  let question = document.querySelector('.question');
+
+  question.innerHTML = 'Choose either rock, paper, or scissors.'
+}
 
 
   
