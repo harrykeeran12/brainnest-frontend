@@ -177,9 +177,6 @@ document.addEventListener('keypress', (e) => {
     case '.':
       decimalButton.click()
       break;
-    case 'Enter':
-      equalsButton.click()
-      break;
     
   }
 })

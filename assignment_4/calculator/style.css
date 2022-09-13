@@ -22,7 +22,7 @@ main{
 }
 .display-container{
   background-color: rgba(128, 128, 128, 0.35);
-  width: 50%;
+  width: 20vw;
   margin-bottom: 5rem;
   min-height: 10%;
   border-top-left-radius: 1rem;
