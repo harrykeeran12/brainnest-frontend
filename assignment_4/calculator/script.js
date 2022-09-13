@@ -7,6 +7,7 @@ let divideButton = document.querySelector('.divide');
 let clearButton = document.querySelector('.clear');
 let equalsButton = document.querySelector('.equals');
 let backSpaceButton = document.querySelector('.backspace')
+let decimalButton = document.querySelector('.decimal')
 let numberList = document.querySelectorAll('.number');
 let wipe = true
 
@@ -71,21 +72,47 @@ function backSpace(){
   }
   
 }
+function getOperatorNumber(){
+  let operators = display.innerHTML.match(/[\+x\/\-]/gm);
+  if (operators == null){
+    return 0
+  }
+  return operators.length
+}
+function getDecimalPointNumber(){
+  let points = display.innerHTML.match(/./gm);
+  if (points == null) {
+    return 0
+  }
+  return points.length
+}
 function main(){
   addButton.addEventListener('click', ()=>{
+    if (getOperatorNumber() > 0) {
+      equalsButton.click()
+    }
     wipe = false
     addtoDisplay('+')
     
   })
   subtractButton.addEventListener('click', () => {
+    if (getOperatorNumber() > 0) {
+      equalsButton.click()
+    }
     wipe = false
     addtoDisplay('-')
   })
   multiplyButton.addEventListener('click', () => {
+    if (getOperatorNumber() > 0) {
+      equalsButton.click()
+    }
     wipe = false
     addtoDisplay('x')
   })
   divideButton.addEventListener('click', () => {
+    if (getOperatorNumber() > 0) {
+      equalsButton.click()
+    }
     wipe = false
     addtoDisplay('/')
   })
@@ -94,6 +121,13 @@ function main(){
   })
   backSpaceButton.addEventListener('click', ()=>{
     backSpace()
+  })
+  decimalButton.addEventListener('click', ()=>{
+    if (getDecimalPointNumber() < 2) {
+      wipe = false
+      addtoDisplay('.')
+    }
+    
   })
   numberList.forEach(item => {
     item.addEventListener('click', ()=>{
@@ -108,13 +142,45 @@ function main(){
   equalsButton.addEventListener('click', ()=>{
     let numbers = display.innerHTML.split(/[\+x\/\-]/gm);
     console.log(numbers)
-    let operator = display.innerHTML.match(/\D+/gm)[0];
+    let operator = display.innerHTML.match(/[\+x\/\-]/gm)[0];
+    console.log(operator)
     if (numbers.length === operator.length * 2){
-      let result = operate(operator, parseInt(numbers[0]), parseInt(numbers[1]))
+      let result = operate(operator, parseFloat(numbers[0]), parseFloat(numbers[1]))
+      console.log(result)
       replace(result)
       wipe = true
     }
   })
 
+
 }
+document.addEventListener('keypress', (e) => {
+  console.log(e.key)
+  switch (e.key) {
+    case '+':
+      addButton.click()
+    case '-':
+      subtractButton.click()
+      break;
+    case '*':
+      multiplyButton.click()
+      break;
+    case '/':
+      divideButton.click()
+      break;
+    case "Backspace":
+      backSpaceButton.click()
+      break;
+    case 'C':
+      clearButton.click()
+      break;
+    case '.':
+      decimalButton.click()
+      break;
+    case 'Enter':
+      equalsButton.click()
+      break;
+    
+  }
+})
 main()
